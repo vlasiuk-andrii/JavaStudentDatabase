@@ -12,7 +12,7 @@ public class DeleteStudent {
         Matcher l = null;
         Scanner input = new Scanner(System.in);
 
-        do  { System.out.println("\nInput number of student to delete: ");
+        do  { System.out.print("\nInput number of student to delete: ");
             s = input.nextLine();
             l = p.matcher(s);
         } while  (!l.matches());

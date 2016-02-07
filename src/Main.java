@@ -24,9 +24,10 @@ public class Main {
         String s = null;
         Pattern p = Pattern.compile("[0-5]");
         Matcher l = null;
+        System.out.println("Hi! You are in the datebase of students.");
 
         do {
-            System.out.print( "Hi! You are in the datebase of students. \n 1 - Add student \n 2 - Delete student" +
+            System.out.print( "\n 1 - Add student \n 2 - Delete student" +
                     "\n 3 - Show full list of students \n 4 - Replace two student in the list \n 5 - Show student info \n" +
                     " 0 - Exit\n" );
             do  { System.out.print("\nMenu. Please input number from the list: " );

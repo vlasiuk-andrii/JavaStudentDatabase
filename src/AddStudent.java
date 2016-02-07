@@ -3,10 +3,25 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddStudent {
+public class AddStudent extends Main {
     Main body = new Main();
 
     public void addStudent() {
+        /*
+        body.SecondName.add("Valiliev");
+        body.SecondName.add("Andreev");
+        body.SecondName.add("Dovzenko");
+        body.FirstName.add("Oleg");
+        body.FirstName.add("Igor");
+        body.FirstName.add("Timofey");
+        body.Job.add(2);
+        body.Job.add(3);
+        body.Job.add(2);
+        body.Weight.add(87.1);
+        body.Weight.add(65.0);
+        body.Weight.add(156.0);
+        */
+
         String s = null;
         Integer k = null;
         Double d = null;
@@ -41,6 +56,12 @@ public class AddStudent {
         } while  (!l.matches());
         d = Double.parseDouble(s);
         body.Weight.add(d);
+
+
+        System.out.println(body.FirstName);
+        System.out.println(body.SecondName);
+        System.out.println(body.Job);
+        System.out.println(body.Weight);
 
         System.out.println("Student complete added!");
     }
