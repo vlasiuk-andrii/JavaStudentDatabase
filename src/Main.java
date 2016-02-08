@@ -14,11 +14,8 @@ public class Main {
 
     public static void main(String[] args) {
         int num = -1;
-        AddStudent addStudentObject = new AddStudent();
-        DeleteStudent deleteStudentObject = new DeleteStudent();
-        ShowFullList showFullListObject = new ShowFullList();
-        ReplaceStudents replaceStudentsObject = new ReplaceStudents();
-        ShowStudentInfo showStudentInfoObject = new ShowStudentInfo();
+        Main main = new Main();
+        Functional operator = new Functional();
         Scanner input = new Scanner(System.in);
 
         String s = null;
@@ -27,10 +24,10 @@ public class Main {
         System.out.println("Hi! You are in the datebase of students.");
 
         do {
-            System.out.print( "\n 1 - Add student \n 2 - Delete student" +
-                    "\n 3 - Show full list of students \n 4 - Replace two student in the list \n 5 - Show student info \n" +
+            System.out.print( "\n  Menu:\n 1 - Add student \n 2 - Delete student" +
+                    "\n 3 - Show list of students \n 4 - Replace two student in the list \n 5 - Show student info \n" +
                     " 0 - Exit\n" );
-            do  { System.out.print("\nMenu. Please input number from the list: " );
+            do  { System.out.print("Your choice: " );
                 s = input.nextLine();
                 l = p.matcher(s);
             } while  (!l.matches());
@@ -38,19 +35,19 @@ public class Main {
 
             switch (num) {
                 case 1:
-                    addStudentObject.addStudent();
+                    operator.addStudent();
                     break;
                 case 2:
-                    deleteStudentObject.deleteStudent();
+                    operator.deleteStudent();
                     break;
                 case 3:
-                    showFullListObject.showFullList();
+                    operator.showFullList();
                     break;
                 case 4:
-                    replaceStudentsObject.replaceStudent();
+                    operator.replaceStudent();
                     break;
                 case 5:
-                    showStudentInfoObject.showStudentInfo();
+                    operator.showStudentInfo();
                     break;
                 case 0:
                     break;
