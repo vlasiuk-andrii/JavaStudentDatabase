@@ -9,10 +9,9 @@ public class Functional extends Main {
     public void addStudent() {
 
         String s = null;
-        Integer k = null;
         Double d = null;
         Pattern p1 = Pattern.compile("[A-Za-z]{1,20}");
-        Pattern p2 = Pattern.compile("[1-3]{1}");
+        Pattern p2 = Pattern.compile("[A-Z]{1}");
         Pattern p3 = Pattern.compile("((\\d+)|(\\d+.\\d+))");
         Matcher l = null;
         Scanner input = new Scanner(System.in);
@@ -29,12 +28,11 @@ public class Functional extends Main {
         } while  (!l.matches());
         super.SecondName.add(s);
 
-        do  { System.out.print("Input profession[1-3]: ");
+        do  { System.out.print("Input profession[A-Z]: ");
             s = input.nextLine();
             l = p2.matcher(s);
         } while  (!l.matches());
-        k = Integer.parseInt(s);
-        super.Job.add(k);
+        super.Job.add(s.charAt(0));
 
         do  { System.out.print("Input weight: ");
             s = input.nextLine();
@@ -49,11 +47,12 @@ public class Functional extends Main {
     public void deleteStudent(){
         String s = null;
         int k = -1;
+        int z = 0;
         Pattern p = Pattern.compile("[\\d+]");
         Matcher l = null;
         Scanner input = new Scanner(System.in);
 
-        do  { System.out.print("\nID of student: ");
+        do  { System.out.print("ID of student: ");
             s = input.nextLine();
             l = p.matcher(s);
         } while  (!l.matches());
@@ -66,16 +65,18 @@ public class Functional extends Main {
             super.Weight.remove(k);
         } catch (IndexOutOfBoundsException ioe) {
             System.out.println("Wrong ID");
+            z = 404;
         }
 
-        
-        System.out.print("Student with ID="+k+" complete deleted!\n");
+        if (z!=404){
+            System.out.print("Student with ID="+k+" complete deleted!\n");
+        }
     }
 
     public void showFullList() {
         System.out.print("\n #  "+"SecondName\n");
         if (super.FirstName.size() == 0){
-            System.out.println("   --empty list--  ");
+            System.out.println("  --empty list--  ");
         } else {
             for (int i=0; i<super.FirstName.size(); i++){
                 System.out.print(" "+i+". "+super.SecondName.get(i));
@@ -92,17 +93,28 @@ public class Functional extends Main {
         Matcher l = null;
         Scanner input = new Scanner(System.in);
 
-        do  { System.out.print("ID of first student: ");
-            s = input.nextLine();
-            l = p.matcher(s);
-        } while  (!l.matches());
-        k1 = Integer.parseInt(s);
+        do {
+            do  { System.out.print("ID of first student: ");
+                s = input.nextLine();
+                l = p.matcher(s);
+            } while  (!l.matches());
+            k1 = Integer.parseInt(s);
+            if (k1>=super.FirstName.size()){
+                System.out.print("ID_1 is out of StudentList!\n");
+            }
+        } while (k1>=super.FirstName.size());
 
-        do  { System.out.print("ID of second student: ");
-            s = input.nextLine();
-            l = p.matcher(s);
-        } while  (!l.matches());
-        k2 = Integer.parseInt(s);
+        do {
+            do  { System.out.print("ID of second student: ");
+                s = input.nextLine();
+                l = p.matcher(s);
+            } while  (!l.matches());
+            k2 = Integer.parseInt(s);
+            if (k2>=super.FirstName.size()){
+                System.out.print("ID_2 is out of StudentList!\n");
+            }
+        } while (k2>=super.FirstName.size());
+
 
         String bufer1 = new String();
         bufer1 = super.FirstName.get(k1);
@@ -114,7 +126,7 @@ public class Functional extends Main {
         super.SecondName.set(k1, super.SecondName.get(k2));
         super.SecondName.set(k2, bufer2);
 
-        int bufer3 = -1;
+        char bufer3;
         bufer3 = super.Job.get(k1);
         super.Job.set(k1, super.Job.get(k2));
         super.Job.set(k2, bufer3);
@@ -135,17 +147,94 @@ public class Functional extends Main {
         Matcher l = null;
         Scanner input = new Scanner(System.in);
 
-        do  { System.out.print("\nID of student: ");
-            s = input.nextLine();
-            l = p.matcher(s);
-        } while  (!l.matches());
-        k = Integer.parseInt(s);
+        do {
+            do  { System.out.print("ID of student: ");
+                s = input.nextLine();
+                l = p.matcher(s);
+            } while  (!l.matches());
+            k = Integer.parseInt(s);
+            if (k>=super.FirstName.size()){
+                System.out.print("ID is out of StudentList!\n");
+            }
+        } while (k>=super.FirstName.size());
 
-        System.out.print(" # "+"FirstName"+"  "+"SecondName"+"  "+"Job"+"  "+"Weight\n");
+        System.out.print("\n # "+"FirstName"+"  "+"SecondName"+"  "+"Job"+"  "+"Weight\n");
         System.out.print(" "+k+". "+super.FirstName.get(k)+"   ");
         System.out.print(super.SecondName.get(k)+"   ");
         System.out.print(super.Job.get(k)+"   ");
         System.out.print(super.Weight.get(k));
         System.out.println();
+    }
+
+    public void editStudentInfo(){
+        String s = null;
+        int k = -1;
+        int q = -1;
+        Pattern p1 = Pattern.compile("[\\d+]");
+        Pattern p2 = Pattern.compile("[0-4]");
+        Pattern p3 = Pattern.compile("[A-Za-z]{1,20}");
+        Pattern p4 = Pattern.compile("[A-Z]");
+        Pattern p5 = Pattern.compile("((\\d+)|(\\d+.\\d+))");
+        Matcher l = null;
+        Scanner input = new Scanner(System.in);
+
+        do {
+            do  { System.out.print("ID of student: ");
+                s = input.nextLine();
+                l = p1.matcher(s);
+            } while  (!l.matches());
+            k = Integer.parseInt(s);
+            if (k>=super.FirstName.size()){
+                System.out.print("ID is out of StudentList!\n");
+            }
+        } while (k>=super.FirstName.size());
+
+        do {
+            System.out.print( "\n 1 - First name \n 2 - Second name" +
+                    "\n 3 - Profession \n 4 - Weight \n 0 - Exit to main menu \n" );
+
+            do  { System.out.print("What to edit: ");
+                s = input.nextLine();
+                l = p2.matcher(s);
+            } while  (!l.matches());
+            q = Integer.parseInt(s);
+
+            switch (q){
+                case 1:
+                    do  { System.out.print("New First name: ");
+                        s = input.nextLine();
+                        l = p3.matcher(s);
+                    } while  (!l.matches());
+                    super.FirstName.set(k, s);
+                    System.out.println("First name successful edited!");
+                    break;
+                case 2:
+                    do  { System.out.print("New Second name: ");
+                        s = input.nextLine();
+                        l = p3.matcher(s);
+                    } while  (!l.matches());
+                    super.SecondName.set(k, s);
+                    System.out.println("Second name successful edited!");
+                    break;
+                case 3:
+                    do  { System.out.print("New profession[A-Z]: ");
+                        s = input.nextLine();
+                        l = p4.matcher(s);
+                    } while  (!l.matches());
+                    super.Job.set(k, s.charAt(0));
+                    System.out.println("Professional successful edited!");
+                    break;
+                case 4:
+                    do  { System.out.print("New weight: ");
+                        s = input.nextLine();
+                        l = p5.matcher(s);
+                    } while  (!l.matches());
+                    super.Weight.set(k, Double.parseDouble(s));
+                    System.out.println("Weight successful edited!");
+                    break;
+            }
+        } while (q!=0);
+
+
     }
 }
